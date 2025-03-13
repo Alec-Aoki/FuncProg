@@ -4,6 +4,8 @@ main = do
     --putStrLn $ show $ sinal(10)
     --putStrLn $ show $ absoluto(-5)
     --putStrLn $ show $ absoluto(5)
+    putStrLn $ show $ bhaskara 1 4 10
+    putStrLn $ show $ somaPos2 [-100, 1, 2, 3]
 
 -- Função sinal
 sinal_if x = if x < 0
@@ -31,3 +33,22 @@ somaPos [] = 0
 somaPos (x:xs) -- Soma de uma lista com cabeça e cauda
     | x > 0 = x + somaPos xs -- Se a cabeça for positivo, soma a cabeça com a cauda (recursivamente)
     | otherwise = somaPos xs -- Senão, soma a cauda (sem considerar a cabeça, também recursivamente)
+
+-- Bhaskara c/ guarda e where
+bhaskara a b c
+    | delta < 0 = []
+    | delta == 0 = [x]
+    | otherwise = [x', x'']
+        where
+            delta = b^2 - 4*a*c
+            x = -b/(2*a)
+            x' = (-b + sqrt delta)/(2*a)
+            x'' = (-b - sqrt delta)/(2*a)
+
+-- somaPos com where
+somaPos2 [] = 0
+somaPos2 (x:xs)
+    | x > 0 = x + somaCauda
+    | otherwise = somaCauda
+        where
+            somaCauda = somaPos xs
