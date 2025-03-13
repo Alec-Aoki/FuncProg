@@ -1,11 +1,30 @@
 main = do
+    -- Recebendo strings do teclado
+    la <- getLine -- <- indica que é impuro, a main agora é impura
+    let a = read la -- Transformando string em número, automaticamente (essa função é pura btw)
+    lb <- getLine
+    let b = read lb -- read é o oposto do show
+    lc <- getLine
+    let c = read lc
+
+    -- A conversão automática só funciona pq usamos a como parâmetro da função bhaskara, e ela usa esse parâmetro como número
+    -- Como estamos utilizando funções impuras, as ordens do código impuro fazem diferença
+
+    putStrLn $ show $ bhaskara a b c -- Impura
+
+    -- let res = bhaskara a b c seria PURA pois bhaskara é pura
+
+    -- RESUMINDO: no caso de "variáveis", usar <- para funções impuras e let = para funções puras 
+
     --putStrLn $ show $ sinal_if(-10)
     --putStrLn $ show $ sinal(-10)
     --putStrLn $ show $ sinal(10)
     --putStrLn $ show $ absoluto(-5)
     --putStrLn $ show $ absoluto(5)
-    putStrLn $ show $ bhaskara 1 4 10
-    putStrLn $ show $ somaPos2 [-100, 1, 2, 3]
+
+    --putStrLn $ show $ bhaskara 1 4 10
+
+    --putStrLn $ show $ somaPos2 [-100, 1, 2, 3]
 
 -- Função sinal
 sinal_if x = if x < 0
