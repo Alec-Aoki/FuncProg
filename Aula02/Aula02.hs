@@ -14,7 +14,9 @@ main = do
 
     -- let res = bhaskara a b c seria PURA pois bhaskara é pura
 
-    -- RESUMINDO: no caso de "variáveis", usar <- para funções impuras e let = para funções puras 
+    -- RESUMINDO: no caso de "variáveis", usar <- para funções impuras e let = para funções puras
+
+    -- let res = bhaskara (read la) (read lb) (read lc) funcionaria, pois read é pura
 
     --putStrLn $ show $ sinal_if(-10)
     --putStrLn $ show $ sinal(-10)
