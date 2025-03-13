@@ -22,3 +22,6 @@ absoluto x
     | x >= 0 = x
     | otherwise = -x
 
+-- Guardas são interpretadas uma a uma na ordem em que elas foram colocadas
+-- Otherwise é equivalente a True, portanto ele precisa ir no final das condições (é equivalente ao else)
+-- Caso seja usado um parâmetro não coberto por um caso, o programa é ABORTADO, apesar dele compilar
