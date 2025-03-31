@@ -101,3 +101,13 @@ quicksort (pivot:xs) = menores ++ iguais ++ maiores
         menores = quicksort $ filtra (< pivot) xs
         iguais = pivot:filtra (== pivot) xs
         maiores = quicksort $ filtra (> pivot) xs
+
+quicksort2 :: (Ord a) => ([a] -> a) -> [a] -> [a]
+quicksort2 [] = []
+quicksort2 pegaPivot l = menores ++ iguais ++ maiores
+    where
+        pivot = pegaPivot l
+        menores = quicksort2 pegaPivot $ filtra (< pivot) l
+        iguais = filtra (== pivot) l
+        maiores = quicksort2 pegaPivot $ filtra (> pivot) l
+-- pegaPivot é uma função que seleciona o pivot
