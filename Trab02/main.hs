@@ -2,23 +2,22 @@
 
 main = do
     -- Recebendo os dois números inicias
-    entrada1 <- getLine
-    let n1 = read entrada1
+    --entrada1 <- getLine
+    --let n1 = read entrada1
 
-    entrada2 <- getLine
-    let n2 = read entrada2
+    --entrada2 <- getLine
+    --let n2 = read entrada2
 
-    putStrLn $ show $ divisores $ listaDeLista $ sequencia $ intervalo n1 n2
-
+    putStrLn $ show $ desfazerListaDeLista (gerarListaDeLista (\x -> [soma (divisores (sequencia x) x)]) (intervalo 5 8))
 
 -- Intervalo: cria uma lista com os números inteiros entre os dois número recebidos
 intervalo :: Integer -> Integer -> [Integer]
 intervalo a b = [a .. b]
 
--- listaDeLista: dado uma lista, gera uma lista de listas em que a lista mais interior segue a função f
-listaDeLista :: (Integer -> [Integer]) -> [Integer] -> [[Integer]]
-listaDeLista _ [] = []
-listaDeLista f (x:xs) = f x : listaDeLista f xs
+-- gerarListaDeLista: dado uma lista, gera uma lista de listas em que a lista mais interior segue a função f
+gerarListaDeLista :: (Integer -> [Integer]) -> [Integer] -> [[Integer]]
+gerarListaDeLista _ [] = []
+gerarListaDeLista f (x:xs) = f x : gerarListaDeLista f xs
 
 -- Sequencia: dado um inteiro n, produz uma lista de 1 até n-1
 sequencia :: Integer -> [Integer]
@@ -32,7 +31,12 @@ divisores (x:xs) a
     | (mod a x) == 0 = x : divisores xs a 
     | otherwise = divisores xs a
 
--- Soma: soma todos os inteiros de uma lista
+-- Soma: dada uma lista de inteiros, soma todos seus elementos
 soma :: [Integer] -> Integer
 soma [] = 0
 soma (x:xs) = x + soma xs
+
+-- DesfazerListaDeLista: concatena listas (usada com a função soma)
+desfazerListaDeLista :: [[Integer]] -> [Integer]
+desfazerListaDeLista [] = []
+desfazerListaDeLista (xs:xss) = xs ++ desfazerListaDeLista xss
